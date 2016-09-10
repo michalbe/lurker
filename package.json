@@ -12,6 +12,10 @@
     "test"
   ],
   "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-watch": "^1.0.0",
+    "jit-grunt": "^0.10.0",
     "jshint": "^2.9.3",
     "precommit-hook": "^3.0.0"
   }
