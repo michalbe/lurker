@@ -18,5 +18,8 @@
     "jit-grunt": "^0.10.0",
     "jshint": "^2.9.3",
     "precommit-hook": "^3.0.0"
+  },
+  "dependencies": {
+    "jquery": "^3.1.1"
   }
 }

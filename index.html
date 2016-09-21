@@ -1,1 +1,26 @@
-elo
+<html>
+  <head>
+    <title>LURKER</title>
+  </head>
+  <style>
+    body {
+      background-size: cover;
+    }
+  </style>
+  <body>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="index.js"></script>
+    <input type="text">
+
+    <script>
+      LURKER({
+        title: 'Limitless',
+        season: 1,
+        episode: 2
+      }).then(function(src) {
+        console.log(src);
+        document.body.style.backgroundImage = 'url(' + src + ')';
+      });
+    </script>
+  </body>
+</html>
