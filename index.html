@@ -10,7 +10,7 @@
   <body>
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="index.js"></script>
-    <input type="text">
+    <input type="text"><button>GO</button>
 
     <script>
       LURKER({
@@ -21,6 +21,20 @@
         console.log(src);
         document.body.style.backgroundImage = 'url(' + src + ')';
       });
+
+      $('button').click(function() {
+        $('button').attr('disabled', 'disabled').html('loading...');
+        var title = $('input').val();
+        LURKER({
+          title: title,
+          season: 1,
+          episode: 1
+        }).then(function(src) {
+          console.log(src);
+          document.body.style.backgroundImage = 'url(' + src + ')';
+          $('button').removeAttr('disabled').html('GO');
+        });
+      })
     </script>
   </body>
 </html>

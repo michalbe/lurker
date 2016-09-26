@@ -19,7 +19,7 @@ var LURKER = function(episodeObject, cb) {
 
     showId = showId.replace('/recap/', '').split('/')[0];
 
-    var showURL = ['recap', showId, title, 'season-' + season, 'episode-' + episode].join('/');
+    var showURL = ['recap', showId, title.replace(/ /g, '-'), 'season-' + season, 'episode-' + episode].join('/');
 
     $.ajax({
       type: 'GET',
