@@ -15,22 +15,28 @@ var LURKER = function(episodeObject, cb) {
     contentType: 'application/json'
   }).then(function(data) {
     var _doc =  new DOMParser().parseFromString(data, 'text/html');
-    var showId = _doc.querySelector('.gallery.row li a').pathname;
+    var showId = _doc.querySelector('.gallery.row li a');
 
-    showId = showId.replace('/recap/', '').split('/')[0];
+    if (showId) {
+      showId = showId.pathname;
+      showId = showId.replace('/recap/', '').split('/')[0];
 
-    var showURL = ['recap', showId, title.replace(/ /g, '-'), 'season-' + season, 'episode-' + episode].join('/');
+      var showURL = ['recap', showId, title.replace(/ /g, '-'), 'season-' + season, 'episode-' + episode].join('/');
 
-    $.ajax({
-      type: 'GET',
-      url: URL + showURL,
-      contentType: 'application/json'
-    }).then(function(data) {
-      _doc =  new DOMParser().parseFromString(data, 'text/html');
-      var images = _doc.querySelectorAll('.thumb .img-responsive.lazy-slide[data-src]');
-      var image = images[Math.floor(Math.random()*images.length)];
-      dfd.resolve(image.dataset.src);
-    });
+      $.ajax({
+        type: 'GET',
+        url: URL + showURL,
+        contentType: 'application/json'
+      }).then(function(data) {
+        _doc =  new DOMParser().parseFromString(data, 'text/html');
+        var images = _doc.querySelectorAll('.thumb .img-responsive.lazy-slide[data-src]');
+        var image = images[Math.floor(Math.random()*images.length)];
+        dfd.resolve(image.dataset.src);
+      });
+    } else {
+      dfd.resolve('http://epaper2.mid-day.com/images/no_image_thumb.gif');
+    }
+
   });
   return dfd;
 };
